@@ -108,6 +108,43 @@ export default class BinarySearchTree {
     }
   }
   // 移除一个节点
+  remove(key) {
+    this.root = this.removeNode(this.root, key);
+  }
+  removeNode(node, key) {
+    if (node == null) {
+      return undefined;
+    }
+    if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
+      // 要移除的键比当前节点的值小，沿着树左边找到下一个节点
+      node.left = this.removeNode(node.left, key);
+      return node;
+    } else if (this.compareFn(key, node.key) === Compare.BIGGER_THAN) {
+      node.right = this.removeNode(node.right, key);
+      return node;
+    }
+    // 要移除的键和当前节点相等
+    // case 1 当前节点没有子节点
+    if (node.left == null && node.right == null) {
+      // 将这个节点赋值undefined 来移除他
+      node = undefined;
+      // 返回 undefined 来将对应的父节点指针赋予undefined
+      return node;
+    }
+    // case 2 当前节点没有左侧或右侧子节点
+    if (node.left == null) {
+      node = node.right;
+      return node;
+    } else if (node.right == null) {
+      node = node.left;
+      return node;
+    }
+    // case 3 当前节点有两个子节点
+    const aux = this.minNode(node.right); // 找到右边子树中最小的节点
+    node.key = aux.key; // 用右边子树中最小的节点 去更新这个要移除的键
+    node.right = this.removeNode(node.right, aux.key);// 移除右边子树中最小的节点
+    return node;
+  }
 }
 
 const tree = new BinarySearchTree()
@@ -140,3 +177,6 @@ tree.inOrderTraverse(pointNode) // 3 5 7 8 9 10 11 12 13 14 15 18 20 25
 console.log(tree.min()) // Node { key: 3, left: undefined, right: undefined }
 console.log(tree.max())
 console.log(tree.search(20)) // true
+
+tree.remove(15)
+tree.inOrderTraverse(pointNode) // 3 5 7 8 9 10 11 12 13 14 18 20 25
