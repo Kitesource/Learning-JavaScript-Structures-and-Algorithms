@@ -26,3 +26,15 @@ export function defaultToString(item) {
   }
   return item.toString();
 }
+
+// 交换数组中的两个值
+export function swap(array, a, b) {
+  /* const temp = array[a];
+  array[a] = array[b];
+  array[b] = temp; */
+  [array[a], array[b]] = [array[b], array[a]];
+}
+
+export function reverseCompare(compareFn) {
+  return (a, b) => compareFn(b, a);
+}
