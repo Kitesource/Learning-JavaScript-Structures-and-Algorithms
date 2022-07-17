@@ -7,7 +7,7 @@ import { Compare, defaultCompare, swap } from '../util.js'
 算法复杂度：O(n^2)
 */
 
-function insertinSort(array, compareFn = defaultCompare) {
+export function insertionSort(array, compareFn = defaultCompare) {
   const { length } = array
 
   for( let i = 1; i < length; i++) {
@@ -23,4 +23,4 @@ function insertinSort(array, compareFn = defaultCompare) {
   return array
 }
 
-console.log(insertinSort([3, 2, 7, 4, 1]))
+console.log(insertionSort([3, 2, 7, 4, 1]))
