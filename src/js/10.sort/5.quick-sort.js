@@ -7,7 +7,7 @@
 算法复杂度：O(nlog(n))
 */
 
-function quickSort(array, left = 0, right = array.length - 1) {
+export function quickSort(array, left = 0, right = array.length - 1) {
   if (array.length > 1) {
     let index // 改变量能帮助我们将子数组分离成较小值数组和较大值数组
     /* 划分操作 */
