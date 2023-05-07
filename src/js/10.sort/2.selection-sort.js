@@ -10,7 +10,7 @@ function selectionSort(array, compareFn = defaultCompare) {
   let indexMin;
   for(let i = 0; i < length; i++) {
     indexMin = i; // 假设本迭代轮次的第一个为最小值
-    for (let j = i; j < length; j++) {
+    for (let j = i + 1; j < length; j++) {
       if(defaultCompare(array[indexMin], array[j]) === Compare.BIGGER_THAN) {
         indexMin = j
       }
