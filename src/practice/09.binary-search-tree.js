@@ -1,3 +1,4 @@
+// 二叉搜索树
 const tree = {
   value: 5,
   left: {
